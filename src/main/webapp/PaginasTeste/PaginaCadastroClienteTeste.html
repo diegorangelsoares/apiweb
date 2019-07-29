@@ -1,0 +1,38 @@
+<html>
+
+	<head>
+		
+	
+	</head>
+
+	<body>
+	
+		<div id="saida">
+		
+		</div>
+		
+		<script>
+			var pessoa = {
+				nome: "Joao",
+				idade: 35,
+				dizerAlgo: function (mensagem, saida){
+					saida(mensagem);
+				}
+			};
+		
+			console.log(pessoa.nome);
+			console.log(pessoa.idade);
+			
+			pessoa.dizerAlgo("Ola do parametros", function(mensagem) { window.alert(mensagem)}); //alert
+			pessoa.dizerAlgo("Ola do parametros", function(mensagem) { 
+				var divSaida = document.getElementById("saida");
+				divSaida.innerHTML = mensagem;
+			
+			}); //div
+			pessoa.dizerAlgo("Ola do parametros", function(mensagem) { console.log(mensagem);}); //console
+		
+		</script>
+
+	</body>
+
+</html>
