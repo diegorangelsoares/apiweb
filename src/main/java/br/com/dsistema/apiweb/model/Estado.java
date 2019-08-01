@@ -16,15 +16,15 @@ package br.com.dsistema.apiweb.model;
 		@Id
 		@GeneratedValue(strategy=GenerationType.AUTO)
 		private long id;
-		private String nome;
+		private String UF;
 		
 		public Estado() {
 			
 		}
 		
-		public Estado(long id, String nome) {
+		public Estado(long id, String UF) {
 			this.id = id;
-			this.nome = nome;
+			this.UF = UF;
 		}
 		
 		public long getId() {
@@ -35,12 +35,12 @@ package br.com.dsistema.apiweb.model;
 			this.id = id;
 		}
 		
-		public String getNome() {
-			return nome;
+		public String getUFe() {
+			return UF;
 		}
 		
-		public void setNome(String nome) {
-			this.nome = nome;
+		public void setUF(String UF) {
+			this.UF = UF;
 		}
 
 }
