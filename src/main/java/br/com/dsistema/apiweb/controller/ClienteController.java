@@ -49,6 +49,17 @@ public class ClienteController {
 		}
 	}
 	
+	@RequestMapping(method = RequestMethod.GET, value="/clientes/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Cliente> buscarClientePorId(@PathVariable Integer id) {
+		Cliente cliente = clienteService.buscarPorId(id);
+		if (cliente == null) {
+			//mensagem de nao encontrato
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			return new ResponseEntity<>( cliente,HttpStatus.OK);
+		}
+	}
+	
 	@RequestMapping(method = RequestMethod.PUT, value="/clientes",consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Cliente> alterarCliente(@RequestBody Cliente cliente) {
 		Cliente clienteAlterado = clienteService.alterar(cliente);		
