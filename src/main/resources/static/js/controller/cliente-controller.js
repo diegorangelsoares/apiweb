@@ -9,7 +9,7 @@ appCliente.controller("clienteController", function ($scope, $http){
 	//Request alimenta a array clientes com o response da api rest
 	//$scope.carregarClientes = function (){
 	carregarClientes = function (){
-		$http({method:'GET', url:'http://localhost:8080/clientes'})
+		$http({method:'GET', url:'http://localhost:8080/admin/clientes'})
 		.then(function(response){
 			$scope.clientes = response.data;
 			console.log(response.data);
@@ -23,7 +23,7 @@ appCliente.controller("clienteController", function ($scope, $http){
 	$scope.salvarClientes = function (){
 		
 		if ($scope.frmCliente.$valid){
-			$http({method:'POST', url:'http://localhost:8080/clientes', data:$scope.cliente})
+			$http({method:'POST', url:'http://localhost:8080/admin/clientes', data:$scope.cliente})
 			.then(function(response){
 				$scope.clientes.push (response.data);
 				console.log(response.data);
@@ -44,7 +44,7 @@ appCliente.controller("clienteController", function ($scope, $http){
 	}
 	
 	$scope.excluirCliente = function (cliente) {
-		$http({method:'DELETE', url:'http://localhost:8080/clientes/'+cliente.id})
+		$http({method:'DELETE', url:'http://localhost:8080/admin/clientes/'+cliente.id})
 		.then(function(response){
 			//Buscar posicao do cliente no array
 			 

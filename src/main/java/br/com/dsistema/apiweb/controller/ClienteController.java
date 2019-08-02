@@ -18,6 +18,7 @@ import br.com.dsistema.apiweb.model.Cliente;
 import br.com.dsistema.apiweb.service.ClienteService;
 
 @RestController
+@RequestMapping ("/admin")
 public class ClienteController {
 	
 	@Autowired
