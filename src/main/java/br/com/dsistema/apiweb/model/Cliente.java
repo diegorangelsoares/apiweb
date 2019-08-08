@@ -1,7 +1,5 @@
 package br.com.dsistema.apiweb.model;
 
-
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,7 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 
 @Entity
 @Table(name="TAB_CLIENTE")
@@ -41,15 +38,9 @@ public class Cliente {
 		return email;
 	}
 
-
-
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-
-
 
 	public long getId() {
 		return id;
@@ -75,7 +66,5 @@ public class Cliente {
 		this.estado = estado;
 	}
 	
-	
-
 
 }

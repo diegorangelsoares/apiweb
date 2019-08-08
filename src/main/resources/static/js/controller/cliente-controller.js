@@ -9,9 +9,13 @@ appCliente.controller("clienteController", function ($scope, $http){
 	//Request alimenta a array clientes com o response da api rest
 	//$scope.carregarClientes = function (){
 	carregarClientes = function (){
+		token = localStorage.getItem("userToken");
+		//$http.defaults.headers.common.Authorization = 'Bearer '+token;
+		
 		$http({method:'GET', url:'http://localhost:8080/admin/clientes'})
 		.then(function(response){
 			$scope.clientes = response.data;
+			
 			console.log(response.data);
 			console.log(response.status);
 		}, function (response){
