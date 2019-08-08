@@ -3,7 +3,9 @@ package br.com.dsistema.apiweb.controller;
 import java.security.Key;
 import java.util.Date;
 
+import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.ServletException;
+import javax.xml.bind.DatatypeConverter;
 import javax.xml.crypto.AlgorithmMethod;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,20 +30,20 @@ public class LoginController {
 	
 	@Autowired
 	UsuarioService usuarioService;
-	
-	Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
-	
+		
 	//End point
 	@RequestMapping(method = RequestMethod.POST, value="/autenticar",consumes = MediaType.APPLICATION_JSON_VALUE)
 	public loginResponse autenticar(@RequestBody Usuario usuario) throws ServletException {
-		
+		//System.out.println("Usuario: "+usuario.getNome());
 		if ( usuario.getNome() == null) {
 			throw new ServletException("Nome e senha obrigatório.");
 		}
 		Usuario usuarioAutenticado = usuarioService.buscarPorNome(usuario.getNome());
+		//System.out.println("Chama a funcao usuarioService.buscarPorNome(usuario.getNome()) Resultado Usuario: "+usuarioAutenticado.getNome()+" Senha: "+usuarioAutenticado.getSenha());
+		
 		
 		//consulta no banco
-		
+		//System.out.println("Usuario: "+usuario.getNome());
 		if (usuarioAutenticado == null) {
 			throw new ServletException("Usuário não encontrado.");
 		}
@@ -49,17 +51,31 @@ public class LoginController {
 			throw new ServletException("Usuário ou senha inválido.");
 		}
 
+		/**
 		String token = Jwts.builder()
 				.setSubject(usuarioAutenticado.getNome())
 				.signWith(key)
-				.setExpiration(new Date(System.currentTimeMillis() + 30 * 60 * 1000))
+				.setExpiration(new Date(System.currentTimeMillis() + 500 * 60 * 1000))
 				.compact();
+				
+
+		String token = Jwts.builder()
+				.setSubject(usuarioAutenticado.getNome())
+				.signWith(SignatureAlgorithm.HS512,"banana"
+					)
+				.setExpiration(new Date(System.currentTimeMillis() + 500 * 60 * 1000))
+				.compact();
+				*/
+		
+
+		String token = Jwts.builder().setSubject(usuarioAutenticado.getNome()).signWith(SignatureAlgorithm.HS256, "diegorangeldoareasdlskmadlkdmsalsdlskmadlkdmsal").setExpiration(new Date(System.currentTimeMillis() + 500 * 60 * 1000)).compact();
 		return new loginResponse(token);
+		//return new loginResponse(token);
 	}
 	
-	public class loginResponse{
+	private class loginResponse{
 		
-		String token;
+		public String token;
 		
 		public loginResponse(String token) {
 			this.token = token;

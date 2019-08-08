@@ -12,7 +12,7 @@ appCliente.controller("loginController", function ($scope, $http){
 			$scope.token = response.data.token;
 			
 		},function(response){
-			console.log("Erro - "+response);
+			console.log("Falha - "+response);
 			
 		});	
 		

@@ -24,7 +24,8 @@ public class UsuarioService{
 	}
 	
 	public Usuario buscarPorNome(String nome) {
-		return usuarioRepository.buscarPorNome(nome);
+		//return usuarioRepository.buscarPorNome(nome);
+		return usuarioRepository.findByNome(nome);
 	}
 	
 }

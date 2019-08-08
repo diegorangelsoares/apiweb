@@ -20,8 +20,7 @@ appCliente.controller("clienteController", function ($scope, $http){
 		});
 	};
 	
-	$scope.salvarClientes = function (){
-		
+	$scope.salvarClientes = function (){		
 		if ($scope.frmCliente.$valid){
 			$http({method:'POST', url:'http://localhost:8080/admin/clientes', data:$scope.cliente})
 			.then(function(response){
